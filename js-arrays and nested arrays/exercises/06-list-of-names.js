@@ -8,7 +8,6 @@ function solve(arr) {
 
 
 
-
 console.log(solve(
     ["John", "Bob", "Christina", "Ema"]
 ))

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button onclick="console.log('Hello, DOM!',sum(1,2))">click me</button> -->
+    <div id="main">This is JavaScript</div>
+    <div>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <button onclick="document.getElementById('main').textContent='Hello DOM!'">clickity clackaty</button>
+    <button onclick="document.getElementById('main').innerHTML= '<p>Welcome to the DOM</p>'">clickity clackaty by two</button>
+    <button onclick="func1()">querySelectorAll</button>
+    <button onclick="func3()">select div from p</button>
+    <button onclick="func2()">getElementByTabName div childrens</button>
+    <button onclick="matchNthChild()">mathc N-th child</button>
+
+</body>
+<script>
+    let text = element.textContent;
+    element.textContent = "Welcoime to DOM";
+    // function sum(a, b){
+    //     return a + b
+    // }
+    function func1(){
+        const elements = document.querySelectorAll('p')
+        console.log(elements)
+    }
+    function func2(){
+        let pElements = document.getElementsByTagName('div')[1].children
+        console.log(pElements)
+    }
+    function func3(){
+        let divElemetn = document.getElementsByTagName('p')[0].parentElement
+        console.log(divElemetn)
+    }
+    function matchNthChild(){
+        const list = document.getElementsByTagName('ul')[0]; // get the first ul on the page
+        const thirdLi = list.getElementsByTagName('li')[2]; // get third li inside the selected ul
+        console.log(thirdLi)
+        const sedondLi = document.querySelector('ul li:nth-child(2)');
+        console.log(sedondLi)
+    }
+</script>
+</html>
