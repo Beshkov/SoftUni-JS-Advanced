@@ -1,74 +1,29 @@
-// function solve() {
-//   let input = document.getElementById('text').value;
-//   let typeOfCase = document.getElementById('naming-convention').value;
-//   let result = ''
-//   let counter = 0
-//   input = input.split(' ')
-//   for (let word of input) {
-//     word = word.toLowerCase();
-//     if (typeOfCase === "Camel Case") {
-//       if (counter === 0) {
-//         result += word
-//         counter++;
-//       }
-//       else {
-//         result += word[0].toUpperCase()
-//         result += word.slice(1)
-//       }
-//     }
-//     else if (typeOfCase === "Pascal Case") {
-//       result += word[0].toUpperCase()
-//       result += word.slice(1)
-//     }
-//     else {
-//       result = "Error!"
-//     }
-//   }
+function solve(){
 
-//   let res = document.getElementById('result');
-//   res.textContent = result
-// }
+    const text = document.getElementById('text').value;
+    const naming = document.getElementById('naming-convention').value;
+    const resultContainer = document.getElementById('result');
+
+    const splited = text.split(' ')
 
 
+    let resultString = ""
+    if (naming == "Pascal Case"){
+        for (let i = 0; i < splited.length; i++){
+            resultString += splited[i][0].toUpperCase() + 
+            splited[i].slice(1, splited[i].length).toLowerCase();
+        }
+    } else if (naming == "Camel Case"){
+        resultString += splited[0][0].toLowerCase() + 
+            splited[0].slice(1, splited[0].length).toLowerCase();
 
-// mine funcion work on in the DOM but not in judge...
-
-function solve() {
-  let input = document.getElementById('text').value;
-  let textCase = document.getElementById('naming-convention').value;
-  let result = document.getElementById('result');
-
-
-
-  if (textCase === 'Pascal Case') {
-    input.toLowerCase();
-    input = input.split(' ');
-    input = textConverter(input, 1);
-  } else if (textCase === 'Camel Case') {
-    input.toLowerCase();
-    input = input.split(' ');
-    input = textConverter(input, 0);
-  } else {
-    input = 'Error!'
-  }
-
-  function textConverter(arr, index) {
-    let res = []
-    for (let i = index; i <arr.length; i++){
-      if (index <= 1){
-        res.push(firstLeterUpperCase(arr[i]))
-      } else{
-        res.push(arr[i])
-      }
+        for (let i = 1; i < splited.length; i++){
+            resultString += splited[i][0].toUpperCase() + 
+            splited[i].slice(1, splited[i].length).toLowerCase();
+            
+        }
+    } else {
+        resultString = 'Error!';
     }
-    return res.join('');
-  }
-  function firstLeterUpperCase(word){
-    let result = word[0].toUpperCase()
-    result += word.slice(1)
-    return result
-  }
-  
-  result.innerText = input
-
+    resultContainer.textContent  = resultString;
 }
