@@ -22,41 +22,44 @@ function solve() {
         for (let item of data) {
             const row = document.createElement('tr');
 
-            row.appendChild(createCell('img', { src: item.img})); // imgCell
-            row.appendChild(createCell('p', {}, item.name)); // nameCell
-            row.appendChild(createCell('p', {}, item.price)); // priceCell
-            row.appendChild(createCell('p', {}, item.decFactor)); // decFactorCell
-            row.appendChild(createCell('input', { type: 'checkbox'},)); // checkCell
+            const imgCell = document.createElement('td');
+            const nameCell = document.createElement('td');
+            const priceCell = document.createElement('td');
+            const decFactorCell = document.createElement('td');
+            const checkCell = document.createElement('td');
+
+            const img = document.createElement('img');
+            img.src = item.img
+            imgCell.appendChild(img);
+
+            const nameP = document.createElement('p');
+            nameP.textContent = item.name;
+            nameCell.appendChild(nameP);
+
+            const priceP = document.createElement('p');
+            priceP.textContent = item.price;
+            priceCell.appendChild(priceP);
+
+            const decFactorP = document.createElement('p');
+            decFactorP.textContent = item.decFactor;
+            decFactorCell.appendChild(decFactorP)
+
+            const check = document.createElement('input');
+            check.type = 'checkbox';
+            checkCell.appendChild(check)
+
+            row.appendChild(imgCell);
+            row.appendChild(nameCell);
+            row.appendChild(priceCell);
+            row.appendChild(decFactorCell);
+            row.appendChild(checkCell);
 
             table.appendChild(row);
         }
     }
 
-    function createCell(nestedTag, props, content) {
-        
-        const cell = document.createElement('td');
-        const nested = document.createElement(nestedTag);
-        
-        for ( let prop in props){
-            nested[prop] = props[prop];
-        };
-
-        if ( content ){
-            nested.textContent = content
-        }
-
-        cell.appendChild(nested)
-
-        return cell
-    }
-
     /*# buy furniture #*/
-    /**
-     * 
-     * @param {Event} e 
-     */
     function buy(e) {
-        
         // select all checkboxes
         // filter only checked checkboxes
         // repeat for every selected checkbox
