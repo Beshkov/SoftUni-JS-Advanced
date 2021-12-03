@@ -69,21 +69,17 @@ function solve() {
                 name: row.children[1].textContent,
                 price: Number(row.children[2].textContent),
                 decFactor: Number(row.children[3].textContent)
-            }));
-        
-        let total = 0;
-        let decFactor = 0;
-        const names = []
+            }))
+            .reduce((acc, curr, index, originalArray) => {
+                acc.names.push(curr.name);
+                acc.total += curr.price;
+                acc.decFactor += curr.decFactor / originalArray.length;
+                return acc;
+            },{ names: [], total: 0, decFactor: 0});
 
-        for (let item of furniture) {
-            total += item.price;
-            decFactor +=item.decFactor;
-            names.push(item.name)
-        };
-
-        const result = `Bought furniture: ${names.join(', ')}
-Total price: ${total.toFixed(2)}
-Average decoration factor: ${(decFactor/furniture.length)}`
+        const result = `Bought furniture: ${furniture.names.join(', ')}
+Total price: ${furniture.total.toFixed(2)}
+Average decoration factor: ${furniture.decFactor}`
 
         output.value = result
     }
